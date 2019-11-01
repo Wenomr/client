@@ -17,7 +17,6 @@ export default class Card extends Component {
 
     render() {
 
-        //const { rating, title, genres, poster } = this.state;
         const { vote_average, title, genre_titles, poster_path } = this.props.data;
         return (
             <div className="col s1 m3">

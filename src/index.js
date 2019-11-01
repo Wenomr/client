@@ -10,7 +10,6 @@ class App extends Component {
 
     constructor () {
         super();
-        //this.updateMovie(250);
         this.updateMovies();
     }
 

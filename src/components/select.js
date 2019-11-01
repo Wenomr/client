@@ -8,12 +8,9 @@ export default class Select extends Component {
     constructor () {
         super();
         this.handleChange = this.handleChange.bind(this);
-        //this.updateMovie(250);
-        //this.updateMovie();
     }
     
     handleChange(event) {
-        //console.log(event.target.value);
 
         const {updateData = () => {}} = this.props;
 
@@ -28,8 +25,6 @@ export default class Select extends Component {
     };
 
     render() {
-        //const { rating, title, genres, poster } = this.state;
-        //const { id, vote_average, title, genre_titles, poster_path } = this.props.data;
 
         return (
             <select className="browser-default" 
