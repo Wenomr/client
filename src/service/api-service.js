@@ -23,11 +23,14 @@ export default class ApiService {
         return await res.json();
     };
     
-    async getManyMovies(sortBy, year) {
+    async getManyMovies(sortBy, year, genre) {
         const data = {  'count' : 8,
                         'year' : year,
-                        'sortBy' : sortBy
+                        'sortBy' : sortBy,
+                        'genre_id' : genre
                         };
+
+        console.log(data);
 
         const res = await fetch (`${this._apiBase}/`, {
             method: 'POST', // или 'PUT'

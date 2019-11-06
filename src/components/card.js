@@ -19,7 +19,7 @@ export default class Card extends Component {
 
         const { vote_average, title, genre_titles, poster_path } = this.props.data;
         return (
-            <div className="col s1 m3">
+            <div className="col">
                 <div className="card">
                     <div className="card-image">
                         <img className="card-img" src = {"https://image.tmdb.org/t/p/w400"+ poster_path} alt = ""/>

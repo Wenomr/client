@@ -22,15 +22,14 @@ class App extends Component {
 
     apiService = new ApiService();
 
-    updateData = (value) => {
-        console.log(value);
-        this.updateMovies(value);
+    updateData = (sortBy, year, genre) => {
+        this.updateMovies(sortBy, year, genre);
     }
 
     //genre_id, year, 
-    updateMovies = (sortBy, year) => {
+    updateMovies = (sortBy, year, genre) => {
         this.apiService
-        .getManyMovies(sortBy, year)
+        .getManyMovies(sortBy, year, genre)
         .then((movies) => {
             console.log(movies);
             const elements = movies.map((movie) => {
