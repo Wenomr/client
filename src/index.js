@@ -1,71 +1,41 @@
-import React, { Component } from 'react';
+
+import React from 'react';
+
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
+
 import ReactDOM from 'react-dom';
+import App from './components/app';
+import Movie from './components/movie';
 import './index.css';
-import ApiService from "./service/api-service";
-import Card from './components/card';
-import Nav from './components/nav';
-import Select from './components/select';
 
-class App extends Component {
 
-    constructor () {
-        super();
-        this.updateMovies();
-    }
 
-    state = {
-        elements : null,
-        firstHalf : null,
-        secondHalf : null,
-        year: null
-    };
+export default function Main() {
+  return (
+    <Router>
+      <div>
+        <nav className = "grey darken-4">
+          <ul>
+            <li>
+                <Link to="/">Movies</Link>
+            </li>
+          </ul>
+        </nav>
 
-    apiService = new ApiService();
-
-    updateData = (sortBy, year, genre) => {
-        this.updateMovies(sortBy, year, genre);
-    }
-
-    //genre_id, year, 
-    updateMovies = (sortBy, year, genre) => {
-        this.apiService
-        .getManyMovies(sortBy, year, genre)
-        .then((movies) => {
-            console.log(movies);
-            const elements = movies.map((movie) => {
-                return (
-                    <Card key={movie.id} data={movie}/>
-                );
-              });
-              this.setState({
-                elements: elements,
-                firstHalf: elements.slice(0, 4),
-                secondHalf: elements.slice(4, 8)
-              })
-        });
-    };
-
-    
-    render() {
-        return (
-            <div className = "container">
-            <Nav/>
-            <div className = "inputs">
-                <Select updateData={this.updateData} />
-            </div>
-                <div className = "section">
-                    <header className = "App-header">
-                            <div className = "row">
-                                {this.state.firstHalf}
-                            </div>
-                            <div className = "row">
-                                {this.state.secondHalf}
-                            </div>
-                    </header>
-                </div>
-            </div>
-        );
-    }   
+        <Switch>
+          <Route path="/movies/:id" component = {Movie}/>
+          <Route path="/">
+            <App />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+  );
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<Main />, document.getElementById('root'));

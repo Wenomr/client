@@ -11,19 +11,31 @@ export default class ApiService {
         return await res.json();
     };
 
-    async postResource(url, body) {
-        const res = await fetch (`${this._apiBase}${url}`, {
-            method: 'POST',
-            body: body
-        });
+    getResource = async (url) => {
+        const res = await fetch (`${url}`);
         if (!res.ok) {
             throw new Error(`Could not fetch ${url}, received ${res.status}.`)
         }
         console.log(res);
         return await res.json();
     };
+
+    // async postResource(url, data) {
+    //     const res = await fetch (`${this._apiBase}${url}`, {
+    //         method: 'POST',
+    //         body: JSON.stringify(data), // данные могут быть 'строкой' или {объектом}!
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         }
+    //     });
+    //     if (!res.ok) {
+    //         throw new Error(`Could not fetch ${url}, received ${res.status}.`)
+    //     }
+    //     console.log(res);
+    //     return await res.json();
+    // };
     
-    async getManyMovies(sortBy, year, genre) {
+    getManyMovies = async (sortBy, year, genre) => {
         const data = {  'count' : 8,
                         'year' : year,
                         'sortBy' : sortBy,
@@ -46,11 +58,11 @@ export default class ApiService {
         return await res.json();
     }
   
-    getMovie(id) {
-        return this.getResource(`/id/${id}`);
+    getMovie = async (id) => {
+        return this.getResource(`${this._apiBase}/id/${id}`);
     }
   
-    getGenre(id) {
+    getGenre= async (id) => {
         return this.getResource(`/genre/${id}`);
     }
 
