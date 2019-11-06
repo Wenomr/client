@@ -37,6 +37,10 @@
   justify-content: center;
 }
 
+.title {
+  width: 250px;
+}
+
 .centered {
   display: flex;
   flex-direction: column;
