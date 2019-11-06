@@ -53,12 +53,12 @@ export default class App extends Component {
             </div>
                 <div className = "section">
                     <header className = "App-header">
-                            <div className = "row">
-                                {this.state.firstHalf}
-                            </div>
-                            <div className = "row">
-                                {this.state.secondHalf}
-                            </div>
+                        <div className = "row">
+                            {this.state.firstHalf}
+                        </div>
+                        <div className = "row">
+                            {this.state.secondHalf}
+                        </div>
                     </header>
                 </div>
             </div>
