@@ -58,9 +58,11 @@ export default class Movie extends Component {
                     <div className = "info-container">
                         <h3 className = "light"> { this.state.title } </h3>
                         <p> { this.state.overview } </p>
-                        <p> { this.state.vote_average }/10 </p>
+                        <p className = "base-line">
+                            <i class="material-icons">star_half</i><strong>{ this.state.vote_average }/10</strong>  
+                        </p>
                         <p> { this.state.release_date } </p>
-                        <p> { this.state.genres } </p>
+                        <p className = "small"> { this.state.genres } </p>
                     </div>
                 </div>
             </div> 

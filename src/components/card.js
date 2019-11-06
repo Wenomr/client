@@ -23,8 +23,9 @@ export default class Card extends Component {
                         <img className="card-img" src = {"https://image.tmdb.org/t/p/w400"+ poster_path} alt = ""/>
                     </div>
                     <div className="card-content">
-                        <p className = "small">{ vote_average }/10</p>
-                        
+                        <p className = "base-line">
+                            <i class="material-icons">star_half</i><strong>{ vote_average }/10</strong> 
+                        </p>
                         <p className = "title"><Link to = {`/movies/${id}`}>{ title }</Link></p>
                         <p className = "small">{ genre_titles.join(" | ") }</p>
                     </div>
