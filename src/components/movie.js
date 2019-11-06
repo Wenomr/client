@@ -9,9 +9,7 @@ export default class Movie extends Component {
     }
 
     state = {
-        id : null,
-        genres : null,
-        title : null
+        id : null
     };
 
     apiService = new ApiService();
@@ -23,21 +21,23 @@ export default class Movie extends Component {
     }
     
     updateMovie () {
-        console.log(this.props);
-        this.apiService
-        .getMovie(this.state.id)
-        .then((movie) => {
-            console.log(movie);
-            this.setState({
-                id : movie.id,
-                genres : movie.genre_titles.join(" | "),
-                title : movie.title,
-                overview : movie.overview,
-                vote_average : movie.vote_average,
-                release_date : movie.release_date,
-                poster_path : `https://image.tmdb.org/t/p/w400${movie.poster_path}`
-            })
-        });
+        if (this.state.id) {
+            console.log(this.props);
+            this.apiService
+            .getMovie(this.state.id)
+            .then((movie) => {
+                console.log(movie);
+                this.setState({
+                    id : movie.id,
+                    genres : movie.genre_titles.join(" | "),
+                    title : movie.title,
+                    overview : movie.overview,
+                    vote_average : movie.vote_average,
+                    release_date : movie.release_date,
+                    poster_path : `https://image.tmdb.org/t/p/w400${movie.poster_path}`
+                })
+            });
+        }
     };
 
     render() {
