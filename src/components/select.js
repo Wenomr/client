@@ -82,6 +82,7 @@ export default class Select extends Component {
                         <option value="53">Thriller</option>
                         <option value="10752">War</option>
                         <option value="37">Western</option>
+                        <option value="">None</option>
                 </select>
                 <input 
                         className = "input-field year-input filter-item"
