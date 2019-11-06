@@ -12,7 +12,7 @@ export default class Select extends Component {
 
     state = {
         sortBy : "popularity.desc",
-        year : "",
+        year : "1999",
         genre : ""
     };
     
@@ -28,9 +28,9 @@ export default class Select extends Component {
 
         const {updateData = () => {}} = this.props;
         console.log(event.target.value);
-        //this.setState({year: event.target.value});
+        let yearfilter = event.target.value.replace(/\D/,'');
         this.setState({
-            year : event.target.value.replace(/\D/,'')
+            year : yearfilter
         }, () => {
             updateData(this.state.sortBy, this.state.year, this.state.genre);
         });
@@ -86,7 +86,7 @@ export default class Select extends Component {
                 </select>
                 <input 
                         className = "input-field year-input filter-item"
-                        type = "text"
+                        type = "number"
                         placeholder = "1999"
                         value = {this.state.year} 
                         onChange={this.handleYearChange}>
