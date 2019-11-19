@@ -3,12 +3,11 @@ import '../index.css';
 
 export default class Select extends Component {
 
-    constructor () {
-        super();
-        this.handleChange = this.handleChange.bind(this);
-        this.handleYearChange = this.handleYearChange.bind(this);
-        this.handleGenreChange = this.handleGenreChange.bind(this);
-    }
+    // constructor () {
+    //     super();
+    //     this.handleChange = this.handleChange.bind(this);
+    //     this.handleYearChange = this.handleYearChange.bind(this);
+    // }
 
     state = {
         sortBy : "popularity.desc",
@@ -16,35 +15,21 @@ export default class Select extends Component {
         genre : ""
     };
     
-    handleChange(event) {
-
-        const {updateData = () => {}} = this.props;
-        this.setState({sortBy: event.target.value},() => {
-            updateData(this.state.sortBy, this.state.year, this.state.genre);
+    handleChange = (event) => {
+        this.props.updateData();
+        this.setState({[event.target.name]: event.target.value}, () => {
+            this.props.updateData(this.state.sortBy, this.state.year, this.state.genre);
         });
     }
 
-    handleYearChange(event) {
+    handleYearChange = (event) => {
 
-        const {updateData = () => {}} = this.props;
         console.log(event.target.value);
         let yearfilter = event.target.value.replace(/\D/,'');
         this.setState({
             year : yearfilter
         }, () => {
-            updateData(this.state.sortBy, this.state.year, this.state.genre);
-        });
-    }
-
-    handleGenreChange(event) {
-
-        const {updateData = () => {}} = this.props;
-        console.log(event.target.value);
-        //this.setState({year: event.target.value});
-        this.setState({
-            genre : event.target.value
-        }, () => {
-            updateData(this.state.sortBy, this.state.year, this.state.genre);
+            this.props.updateData(this.state.sortBy, this.state.year, this.state.genre);
         });
     }
 
@@ -61,8 +46,8 @@ export default class Select extends Component {
                 </select>
                 <select 
                         className="browser-default filter-item"
-                        name="genre_id"
-                        onChange={this.handleGenreChange}>
+                        name="genre"
+                        onChange={this.handleChange}>
                         <option value="28">Action</option>
                         <option value="12">Adventure</option>
                         <option value="16">Animation</option>
@@ -88,6 +73,7 @@ export default class Select extends Component {
                         className = "input-field year-input filter-item"
                         type = "number"
                         placeholder = "1999"
+                        name = "year"
                         value = {this.state.year} 
                         onChange={this.handleYearChange}>
                 </input>

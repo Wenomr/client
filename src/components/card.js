@@ -15,7 +15,7 @@ export default class Card extends Component {
 
     render() {
 
-        const { id, vote_average, title, genre_titles, poster_path } = this.props.data;
+        const { id, vote_average, title, poster_path } = this.props.data;
         return (
             <div className="col">
                 <div className="card">
@@ -23,11 +23,11 @@ export default class Card extends Component {
                         <img className="card-img" src = {"https://image.tmdb.org/t/p/w400"+ poster_path} alt = ""/>
                     </div>
                     <div className="card-content">
+                        <span className = "title"><Link to = {`/movies/${id}`}>{ title }</Link></span>
                         <p className = "base-line">
                             <i class="material-icons">star_half</i><strong>{ vote_average }/10</strong> 
                         </p>
-                        <p className = "title"><Link to = {`/movies/${id}`}>{ title }</Link></p>
-                        <p className = "small">{ genre_titles.join(" | ") }</p>
+                        {/* <p className = "small">{ genre_titles.join(" | ") }</p> */}
                     </div>
                 </div>
             </div>

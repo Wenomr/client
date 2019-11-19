@@ -3,11 +3,6 @@ import ApiService from "../service/api-service";
 
 export default class Movie extends Component {
 
-    constructor () {
-        super();
-        console.log("HERE ARE PROPS");
-    }
-
     state = {
         id : null
     };
@@ -16,33 +11,24 @@ export default class Movie extends Component {
 
     componentDidMount () {
         const { id } = this.props.match.params
-        this.setState({id : id});
-        console.log(id);
-    }
-    
-    updateMovie () {
-        if (this.state.id) {
-            console.log(this.props);
+        this.setState({id : id}, () => {
             this.apiService
-            .getMovie(this.state.id)
+            .getMovieEx(this.state.id)
             .then((movie) => {
-                console.log(movie);
                 this.setState({
                     id : movie.id,
-                    genres : movie.genre_titles.join(" | "),
+                    //genres : movie.genre_titles.join(" | "),
                     title : movie.title,
                     overview : movie.overview,
                     vote_average : movie.vote_average,
-                    release_date : movie.release_date,
+                    release_date : movie.release_date.replace(/-/g, '.'),
                     poster_path : `https://image.tmdb.org/t/p/w400${movie.poster_path}`
                 })
             });
-        }
-    };
+        });
+    }
 
     render() {
-
-        this.updateMovie();
 
         return (
             <div className = "container">
@@ -59,10 +45,10 @@ export default class Movie extends Component {
                         <h3 className = "light"> { this.state.title } </h3>
                         <p> { this.state.overview } </p>
                         <p className = "base-line">
-                            <i class="material-icons">star_half</i><strong>{ this.state.vote_average }/10</strong>  
+                            <i className="material-icons">star_half</i><strong>{ this.state.vote_average }/10</strong>  
                         </p>
                         <p> { this.state.release_date } </p>
-                        <p className = "small"> { this.state.genres } </p>
+                        {/* <p className = "small"> { this.state.genres } </p> */}
                     </div>
                 </div>
             </div> 
